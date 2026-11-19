@@ -1,0 +1,57 @@
+{
+  "name": "yaqeen",
+  "productName": "Yaqeen",
+  "version": "1.0.0",
+  "description": "يقين - برنامج حسابات مواد البناء",
+  "main": "main.js",
+  "author": "BuildMat",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "electron-builder --win nsis --x64",
+    "keygen": "node keygen.js",
+    "test": "node test/core.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.yaqeen.accounting",
+    "productName": "Yaqeen",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "يقين",
+      "artifactName": "Yaqeen_Setup_${version}.exe",
+      "runAfterFinish": true
+    }
+  }
+}
